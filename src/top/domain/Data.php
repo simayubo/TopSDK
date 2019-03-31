@@ -1,65 +1,30 @@
 <?php
 
 /**
- * 查询结果
+ * data
  * @author auto create
  */
 class Data
 {
 	
 	/** 
-	 * 展现量
+	 * 是否有下一页
 	 **/
-	public $ad_pv;
+	public $has_next;
 	
 	/** 
-	 * transId
+	 * 页码
 	 **/
-	public $adgroup_id;
+	public $page_no;
 	
 	/** 
-	 * campaignId
+	 * 每页大小
 	 **/
-	public $campaign_id;
+	public $page_size;
 	
 	/** 
-	 * 消耗
+	 * resultList
 	 **/
-	public $charge;
-	
-	/** 
-	 * 点击量
-	 **/
-	public $click;
-	
-	/** 
-	 * 点击率
-	 **/
-	public $ctr;
-	
-	/** 
-	 * 平均点击单价
-	 **/
-	public $ecpc;
-	
-	/** 
-	 * 千次展现花费
-	 **/
-	public $ecpm;
-	
-	/** 
-	 * 小时数，取值范围0-23
-	 **/
-	public $hour_id;
-	
-	/** 
-	 * 查询日期
-	 **/
-	public $log_date;
-	
-	/** 
-	 * targetId
-	 **/
-	public $target_id;	
+	public $results;	
 }
 ?>

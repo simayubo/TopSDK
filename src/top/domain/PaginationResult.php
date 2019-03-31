@@ -1,45 +1,60 @@
 <?php
 
 /**
- * result
+ * 返回结果
  * @author auto create
  */
 class PaginationResult
 {
 	
 	/** 
-	 * 仓库信息数组
+	 * 当前页码
 	 **/
-	public $data;
+	public $current_page;
+	
+	/** 
+	 * 扩展属性
+	 **/
+	public $extend;
+	
+	/** 
+	 * 商品数据
+	 **/
+	public $model_list;
 	
 	/** 
 	 * 错误码
 	 **/
-	public $error_code;
+	public $msg_code;
 	
 	/** 
 	 * 错误信息
 	 **/
-	public $error_msg;
+	public $msg_info;
 	
 	/** 
-	 * 页码
-	 **/
-	public $page_no;
-	
-	/** 
-	 * 页大小
+	 * 一页大小
 	 **/
 	public $page_size;
 	
 	/** 
-	 * 是否成功
+	 * 请求是否成功
 	 **/
 	public $success;
 	
 	/** 
-	 * 总条数
+	 * 商品总数
 	 **/
-	public $total_count;	
+	public $total_item;
+	
+	/** 
+	 * 总页数
+	 **/
+	public $total_page;
+	
+	/** 
+	 * 埋点信息
+	 **/
+	public $track_params;	
 }
 ?>

@@ -20,7 +20,7 @@ class TopClient
 
 	protected $apiVersion = "2.0";
 
-	protected $sdkVersion = "top-sdk-php-20151012";
+	protected $sdkVersion = "top-sdk-php-20180326";
 
 	public function getAppkey()
 	{
@@ -39,7 +39,7 @@ class TopClient
 		$stringToBeSigned = $this->secretKey;
 		foreach ($params as $k => $v)
 		{
-			if(is_string($v) && "@" != substr($v, 0, 1) || is_numeric($v))
+			if(!is_array($v) && "@" != substr($v, 0, 1))
 			{
 				$stringToBeSigned .= "$k$v";
 			}
@@ -75,10 +75,7 @@ class TopClient
 			$postMultipart = false;
 			foreach ($postFields as $k => $v)
 			{
-				if(!is_string($v) && !is_numeric($v))
-					continue ;
-
-				if("@" != substr($v, 0, 1) && is_string($v) || is_numeric($v))//判断是不是文件上传
+				if("@" != substr($v, 0, 1))//判断是不是文件上传
 				{
 					$postBodyString .= "$k=" . urlencode($v) . "&"; 
 				}
@@ -204,8 +201,7 @@ class TopClient
 	{
 		$localIp = isset($_SERVER["SERVER_ADDR"]) ? $_SERVER["SERVER_ADDR"] : "CLI";
 		$logger = new TopLogger;
-		$user = $_SERVER['LOGNAME'] ?? 'www';
-		$logger->conf["log_file"] = rtrim(TOP_SDK_WORK_DIR, '\\/') . '/' . "logs/".$user."/top_comm_err_" . $this->appkey . "_" . date("Y-m-d") . ".log";
+		$logger->conf["log_file"] = rtrim(TOP_SDK_WORK_DIR, '\\/') . '/' . "logs/top_comm_err_" . $this->appkey . "_" . date("Y-m-d") . ".log";
 		$logger->conf["separator"] = "^_^";
 		$logData = array(
 		date("Y-m-d H:i:s"),
@@ -334,8 +330,7 @@ class TopClient
 		if (isset($respObject->code))
 		{
 			$logger = new TopLogger;
-			$user = $_SERVER['LOGNAME'] ?? 'www';
-			$logger->conf["log_file"] = rtrim(TOP_SDK_WORK_DIR, '\\/') . '/' . "logs/".$user."/top_biz_err_" . $this->appkey . "_" . date("Y-m-d") . ".log";
+			$logger->conf["log_file"] = rtrim(TOP_SDK_WORK_DIR, '\\/') . '/' . "logs/top_biz_err_" . $this->appkey . "_" . date("Y-m-d") . ".log";
 			$logger->log(array(
 				date("Y-m-d H:i:s"),
 				$resp
